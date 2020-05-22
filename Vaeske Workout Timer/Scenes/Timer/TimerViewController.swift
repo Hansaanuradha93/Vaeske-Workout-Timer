@@ -14,8 +14,15 @@ class TimerViewController: UIViewController {
     }
     
     
+    // MARK: IBOutlets
+    @IBOutlet weak var timePickerContainerView: UIView!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    
+    
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
 }

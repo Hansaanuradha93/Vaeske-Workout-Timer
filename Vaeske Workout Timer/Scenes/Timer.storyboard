@@ -15,22 +15,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G5-8g-oNW">
-                                <rect key="frame" x="0.0" y="124" width="414" height="216"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf3-ZR-UKc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ul-wg-d7k">
+                                        <rect key="frame" x="0.0" y="116" width="414" height="216"/>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="ggS-aF-MeE"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Ul-wg-d7k" secondAttribute="trailing" id="1G3-dK-QBw"/>
+                                    <constraint firstItem="3Ul-wg-d7k" firstAttribute="centerY" secondItem="Tf3-ZR-UKc" secondAttribute="centerY" id="pKT-Xa-0ZR"/>
+                                    <constraint firstItem="3Ul-wg-d7k" firstAttribute="height" secondItem="Tf3-ZR-UKc" secondAttribute="height" multiplier="0.482143" id="tQb-B4-XKa"/>
+                                    <constraint firstItem="3Ul-wg-d7k" firstAttribute="leading" secondItem="Tf3-ZR-UKc" secondAttribute="leading" id="zIZ-qc-bxR"/>
                                 </constraints>
-                            </datePicker>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="0G5-8g-oNW" firstAttribute="leading" secondItem="0fe-PX-SVY" secondAttribute="leading" id="CJc-k1-3tJ"/>
-                            <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="0G5-8g-oNW" secondAttribute="trailing" id="OHj-Zs-hIr"/>
-                            <constraint firstItem="0G5-8g-oNW" firstAttribute="top" secondItem="0fe-PX-SVY" secondAttribute="top" constant="80" id="daR-OL-jzS"/>
+                            <constraint firstItem="Tf3-ZR-UKc" firstAttribute="height" secondItem="U1H-mU-bKn" secondAttribute="height" multiplier="0.5" id="H5V-8c-fm3"/>
+                            <constraint firstItem="Tf3-ZR-UKc" firstAttribute="top" secondItem="U1H-mU-bKn" secondAttribute="top" id="TWM-Ly-jbv"/>
+                            <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="Tf3-ZR-UKc" secondAttribute="trailing" id="Wqs-TI-HEX"/>
+                            <constraint firstItem="Tf3-ZR-UKc" firstAttribute="leading" secondItem="0fe-PX-SVY" secondAttribute="leading" id="zWw-Yj-QdW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0fe-PX-SVY"/>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="timePicker" destination="3Ul-wg-d7k" id="FVH-Ir-wbg"/>
+                        <outlet property="timePickerContainerView" destination="Tf3-ZR-UKc" id="POx-S8-BET"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rr1-G2-gG1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
