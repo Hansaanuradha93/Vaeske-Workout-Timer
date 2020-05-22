@@ -15,17 +15,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimerViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdk-AJ-K1l">
-                                <rect key="frame" x="129" y="437.5" width="156.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G5-8g-oNW">
+                                <rect key="frame" x="0.0" y="124" width="414" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="ggS-aF-MeE"/>
+                                </constraints>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="tdk-AJ-K1l" firstAttribute="centerX" secondItem="U1H-mU-bKn" secondAttribute="centerX" id="4bd-oV-Xcq"/>
-                            <constraint firstItem="tdk-AJ-K1l" firstAttribute="centerY" secondItem="U1H-mU-bKn" secondAttribute="centerY" id="h22-nv-Beb"/>
+                            <constraint firstItem="0G5-8g-oNW" firstAttribute="leading" secondItem="0fe-PX-SVY" secondAttribute="leading" id="CJc-k1-3tJ"/>
+                            <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="0G5-8g-oNW" secondAttribute="trailing" id="OHj-Zs-hIr"/>
+                            <constraint firstItem="0G5-8g-oNW" firstAttribute="top" secondItem="0fe-PX-SVY" secondAttribute="top" constant="80" id="daR-OL-jzS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0fe-PX-SVY"/>
                     </view>
@@ -33,7 +34,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rr1-G2-gG1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="156"/>
+            <point key="canvasLocation" x="147.82608695652175" y="155.35714285714286"/>
         </scene>
     </scenes>
 </document>
