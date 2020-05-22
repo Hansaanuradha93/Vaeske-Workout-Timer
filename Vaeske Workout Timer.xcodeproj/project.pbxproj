@@ -11,6 +11,8 @@
 		47DD40EA247837AB00281556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DD40E9247837AB00281556 /* SceneDelegate.swift */; };
 		47DD40F1247837AC00281556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47DD40F0247837AC00281556 /* Assets.xcassets */; };
 		47DD40F4247837AC00281556 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47DD40F2247837AC00281556 /* LaunchScreen.storyboard */; };
+		47DD40FF24783A4D00281556 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DD40FE24783A4D00281556 /* TimerViewController.swift */; };
+		47DD410124783A5A00281556 /* Timer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47DD410024783A5A00281556 /* Timer.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		47DD40F0247837AC00281556 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47DD40F3247837AC00281556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47DD40F5247837AC00281556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47DD40FE24783A4D00281556 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		47DD410024783A5A00281556 /* Timer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timer.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 		47DD40FB2478389A00281556 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				47DD40FD24783A3700281556 /* Timer */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -75,6 +80,15 @@
 				47DD40F5247837AC00281556 /* Info.plist */,
 			);
 			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		47DD40FD24783A3700281556 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				47DD40FE24783A4D00281556 /* TimerViewController.swift */,
+				47DD410024783A5A00281556 /* Timer.storyboard */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47DD40F4247837AC00281556 /* LaunchScreen.storyboard in Resources */,
+				47DD410124783A5A00281556 /* Timer.storyboard in Resources */,
 				47DD40F1247837AC00281556 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47DD40E8247837AB00281556 /* AppDelegate.swift in Sources */,
+				47DD40FF24783A4D00281556 /* TimerViewController.swift in Sources */,
 				47DD40EA247837AB00281556 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
