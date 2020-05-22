@@ -66,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				47DD40FD24783A3700281556 /* Timer */,
+				47DD410024783A5A00281556 /* Timer.storyboard */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -86,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				47DD40FE24783A4D00281556 /* TimerViewController.swift */,
-				47DD410024783A5A00281556 /* Timer.storyboard */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
