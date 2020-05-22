@@ -30,7 +30,6 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        remainingTime = Int(timePicker.countDownDuration)
     }
     
     
@@ -53,6 +52,7 @@ class TimerViewController: UIViewController {
     
     @IBAction func startButtonTapped(_ sender: Any) {
         print("Timer Started")
+        remainingTime = Int(timePicker.countDownDuration)
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
     }
 }
@@ -64,6 +64,7 @@ extension TimerViewController {
     @objc private func startCountdown() {
         if remainingTime > 0 {
             remainingTime -= 1
+            print(remainingTime)
         } else {
             timer.invalidate()
         }
