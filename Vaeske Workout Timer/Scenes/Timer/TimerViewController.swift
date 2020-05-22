@@ -17,12 +17,27 @@ class TimerViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var timePickerContainerView: UIView!
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var cancelButtonContainer: UIView!
+    @IBOutlet weak var cancelButtonTitleLabel: UILabel!
+    @IBOutlet weak var startButtonContainer: UIView!
+    @IBOutlet weak var startButtonTitleLabel: UILabel!
     
     
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+                
+        let seconds = timePicker.countDownDuration
+        print(seconds)
+
+    }
+    
+    
+    // MARK: IBActions
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+    }
+    
+    
+    @IBAction func startButtonTapped(_ sender: Any) {
     }
 }
