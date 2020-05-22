@@ -90,6 +90,12 @@
                                     <constraint firstItem="Ub9-Fp-c3i" firstAttribute="top" secondItem="cDc-ki-x7V" secondAttribute="top" id="yue-ZA-P6s"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISV-g9-EAM">
+                                <rect key="frame" x="148.5" y="638" width="117" height="39"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -99,6 +105,8 @@
                             <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="cDc-ki-x7V" secondAttribute="trailing" constant="20" id="Nm6-cd-jlL"/>
                             <constraint firstItem="Tf3-ZR-UKc" firstAttribute="top" secondItem="U1H-mU-bKn" secondAttribute="top" id="TWM-Ly-jbv"/>
                             <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="Tf3-ZR-UKc" secondAttribute="trailing" id="Wqs-TI-HEX"/>
+                            <constraint firstItem="ISV-g9-EAM" firstAttribute="top" secondItem="cDc-ki-x7V" secondAttribute="bottom" constant="100" id="sM2-Cl-KZN"/>
+                            <constraint firstItem="ISV-g9-EAM" firstAttribute="centerX" secondItem="0fe-PX-SVY" secondAttribute="centerX" id="wgl-lZ-iPg"/>
                             <constraint firstItem="pzu-Ed-wsl" firstAttribute="top" secondItem="Tf3-ZR-UKc" secondAttribute="bottom" constant="20" id="z68-Dt-tgd"/>
                             <constraint firstItem="Tf3-ZR-UKc" firstAttribute="leading" secondItem="0fe-PX-SVY" secondAttribute="leading" id="zWw-Yj-QdW"/>
                         </constraints>
@@ -108,6 +116,7 @@
                     <connections>
                         <outlet property="cancelButtonContainer" destination="pzu-Ed-wsl" id="uUC-DA-xZZ"/>
                         <outlet property="cancelButtonTitleLabel" destination="UTt-cn-JRb" id="api-Ep-yGt"/>
+                        <outlet property="countDownLabel" destination="ISV-g9-EAM" id="O1b-9W-f0j"/>
                         <outlet property="startButtonContainer" destination="cDc-ki-x7V" id="uIt-gk-gCW"/>
                         <outlet property="startButtonTitleLabel" destination="8XM-7C-nRc" id="Xbs-Ab-wnP"/>
                         <outlet property="timePicker" destination="3Ul-wg-d7k" id="FVH-Ir-wbg"/>
