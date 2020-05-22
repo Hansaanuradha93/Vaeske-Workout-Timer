@@ -13,6 +13,9 @@ class TimerViewController: UIViewController {
         return viewController!
     }
     
+    var timer: Timer!
+    var remainingTime: Int = 0
+    
     
     // MARK: IBOutlets
     @IBOutlet weak var timePickerContainerView: UIView!
@@ -26,32 +29,45 @@ class TimerViewController: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        let seconds = timePicker.countDownDuration
-        print(seconds)
+        setupView()
+        remainingTime = Int(timePicker.countDownDuration)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer.invalidate()
     }
     
     
     // MARK: IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         print("Cancel")
+        timer.invalidate()
     }
     
     
     @IBAction func startButtonTapped(_ sender: Any) {
-        print("Start")
+        print("Timer Started")
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
     }
 }
 
 
 // MARK: - Methods
 extension TimerViewController {
+    
+    @objc private func startCountdown() {
+        if remainingTime > 0 {
+            remainingTime -= 1
+        } else {
+            timer.invalidate()
+        }
+    }
     
     private func setupView() {
         
