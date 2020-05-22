@@ -29,15 +29,33 @@ class TimerViewController: UIViewController {
                 
         let seconds = timePicker.countDownDuration
         print(seconds)
-
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupView()
     }
     
     
     // MARK: IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        print("Cancel")
     }
     
     
     @IBAction func startButtonTapped(_ sender: Any) {
+        print("Start")
+    }
+}
+
+
+// MARK: - Methods
+extension TimerViewController {
+    
+    private func setupView() {
+        
+        startButtonContainer.layer.cornerRadius = startButtonContainer.frame.width / 2
+        cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
     }
 }
