@@ -14,6 +14,7 @@ class TimerViewController: UIViewController {
         return viewController!
     }
     
+    
     var timer: Timer!
     var remainingTime: Double = 0
     
@@ -36,7 +37,38 @@ class TimerViewController: UIViewController {
         setupView()
     }
     
-    func scheduleNotifications(with timeInterval: TimeInterval) {
+    
+    // MARK: IBActions
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        cancelButtonTapped()
+        removePendingNotifications()
+    }
+    
+    
+    @IBAction func startButtonTapped(_ sender: Any) {
+        startButtonTapped()
+
+        scheduleNotifications(with: remainingTime)
+    }
+}
+
+
+// MARK: - Methods
+extension TimerViewController {
+    
+    @objc private func startCountdown() {
+        
+        if remainingTime > 0 {
+            remainingTime -= 1
+            countDownLabel.text = formatTime(from: remainingTime)
+        } else {
+            countDownLabel.text = formatTime(from: 0)
+            timer.invalidate()
+        }
+    }
+    
+    
+    private func scheduleNotifications(with timeInterval: TimeInterval) {
 
         let content = UNMutableNotificationContent()
         let requestIdentifier = "timerNotification"
@@ -59,49 +91,29 @@ class TimerViewController: UIViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    
-    // MARK: IBActions
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-//        updateUI()
-        remainingTime = 0
-        timePickerContainerView.isHidden = false
-        startButton.isEnabled = true
-        cancelButton.isEnabled = false
-
-        if let timer = timer {
-            timer.invalidate()
-        }
-        countDownLabel.text = formatTime(from: remainingTime)
-
-        removePendingNotifications()
-    }
-    
-    
-    @IBAction func startButtonTapped(_ sender: Any) {
+    private func startButtonTapped() {
+        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
         remainingTime = timePicker.countDownDuration
         timePickerContainerView.isHidden = true
         startButton.isEnabled = false
         cancelButton.isEnabled = true
-        
         countDownLabel.text = formatTime(from: remainingTime)
-
-//        updateUI()
-        scheduleNotifications(with: remainingTime)
     }
-}
-
-
-// MARK: - Methods
-extension TimerViewController {
+    
+    
+    private func cancelButtonTapped() {
+        
+        remainingTime = 0
+        timePickerContainerView.isHidden = false
+        startButton.isEnabled = true
+        cancelButton.isEnabled = false
+        if let timer = timer {
+            timer.invalidate()
+        }
+        countDownLabel.text = formatTime(from: remainingTime)
+    }
+    
     
     private func formatTime(from time: Double) -> String {
         
@@ -135,26 +147,16 @@ extension TimerViewController {
         return timeFormat
     }
     
+    
     private func removePendingNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
-
     
-    @objc private func startCountdown() {
-        if remainingTime > 0 {
-            remainingTime -= 1
-            countDownLabel.text = formatTime(from: remainingTime)
-        } else {
-            countDownLabel.text = formatTime(from: 0)
-            timer.invalidate()
-        }
-    }
     
     private func setupView() {
         
         startButtonContainer.layer.cornerRadius = startButtonContainer.frame.width / 2
         cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
-        
         cancelButton.isEnabled = false
     }
 }
