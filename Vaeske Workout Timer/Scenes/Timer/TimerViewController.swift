@@ -15,7 +15,7 @@ class TimerViewController: UIViewController {
     }
     
     var timer: Timer!
-    var remainingTime: Int = 0
+    var remainingTime: Double = 0
     
     
     // MARK: IBOutlets
@@ -32,10 +32,9 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        scheduleNotifications()
     }
     
-    func scheduleNotifications() {
+    func scheduleNotifications(with timeInterval: TimeInterval) {
 
         let content = UNMutableNotificationContent()
         let requestIdentifier = "timerNotification"
@@ -45,7 +44,7 @@ class TimerViewController: UIViewController {
         content.body = "Lets do another 30 seconds workout"
         content.sound = UNNotificationSound.default
 
-        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 5.0, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: timeInterval, repeats: false)
 
         let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error:Error?) in
@@ -76,9 +75,10 @@ class TimerViewController: UIViewController {
     
     @IBAction func startButtonTapped(_ sender: Any) {
         print("Timer Started")
-        remainingTime = Int(timePicker.countDownDuration)
+        remainingTime = timePicker.countDownDuration
         countDownLabel.text = "\(remainingTime)"
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
+        scheduleNotifications(with: remainingTime)
     }
     
     
