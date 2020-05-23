@@ -17,6 +17,7 @@ class TimerViewController: UIViewController {
     var timer: Timer!
     var remainingTime: Double = 0
     var isCountingDown: Bool = false
+    var isPaused: Bool = false
     
     
     // MARK: IBOutlets
@@ -78,8 +79,7 @@ class TimerViewController: UIViewController {
     
     @IBAction func startButtonTapped(_ sender: Any) {
         isCountingDown = true
-        updateUI()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
+        startButtonTapped()
         scheduleNotifications(with: remainingTime)
     }
     
@@ -129,6 +129,28 @@ extension TimerViewController {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
+    private func startButtonTapped() {
+        
+        timePickerContainerView.isHidden = true
+        countDownLabel.text = formatTime(from: remainingTime)
+
+        if isPaused {
+            startButtonTitleLabel.text = "Resume"
+            timer.invalidate()
+
+        } else {
+            remainingTime = timePicker.countDownDuration
+            startButtonTitleLabel.text = "Pause"
+            if let timer = timer {
+                timer.invalidate()
+            }
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
+        }
+        
+        isPaused.toggle()
+
+    }
+    
     private func updateUI() {
         
         if isCountingDown {
@@ -137,6 +159,14 @@ extension TimerViewController {
         } else {
             remainingTime = 0
             timePickerContainerView.isHidden = false
+        }
+        
+        if isPaused {
+            startButtonTitleLabel.text = "Start"
+            isPaused = false
+        } else {
+            startButtonTitleLabel.text = "Pause"
+            isPaused = true
         }
         
         countDownLabel.text = formatTime(from: remainingTime)
