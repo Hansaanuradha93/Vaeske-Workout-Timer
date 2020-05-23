@@ -70,6 +70,7 @@ class TimerViewController: UIViewController {
     // MARK: IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         isCountingDown = false
+        removePendingNotifications()
         updateUI()
         timer.invalidate()
     }
@@ -88,6 +89,10 @@ class TimerViewController: UIViewController {
 
 // MARK: - Methods
 extension TimerViewController {
+    
+    private func removePendingNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
     
     private func updateUI() {
         
