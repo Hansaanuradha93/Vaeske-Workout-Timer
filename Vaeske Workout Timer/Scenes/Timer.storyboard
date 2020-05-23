@@ -114,9 +114,11 @@
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
+                        <outlet property="cancelButton" destination="fGs-hP-VD8" id="72t-rV-494"/>
                         <outlet property="cancelButtonContainer" destination="pzu-Ed-wsl" id="uUC-DA-xZZ"/>
                         <outlet property="cancelButtonTitleLabel" destination="UTt-cn-JRb" id="api-Ep-yGt"/>
                         <outlet property="countDownLabel" destination="ISV-g9-EAM" id="O1b-9W-f0j"/>
+                        <outlet property="startButton" destination="Ub9-Fp-c3i" id="n9O-KK-idf"/>
                         <outlet property="startButtonContainer" destination="cDc-ki-x7V" id="uIt-gk-gCW"/>
                         <outlet property="startButtonTitleLabel" destination="8XM-7C-nRc" id="Xbs-Ab-wnP"/>
                         <outlet property="timePicker" destination="3Ul-wg-d7k" id="FVH-Ir-wbg"/>

@@ -16,8 +16,6 @@ class TimerViewController: UIViewController {
     
     var timer: Timer!
     var remainingTime: Double = 0
-    var isCountingDown: Bool = false
-    var isPaused: Bool = false
     
     
     // MARK: IBOutlets
@@ -25,8 +23,10 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var cancelButtonContainer: UIView!
     @IBOutlet weak var cancelButtonTitleLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var startButtonContainer: UIView!
     @IBOutlet weak var startButtonTitleLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var countDownLabel: UILabel!
     
     
@@ -70,20 +70,33 @@ class TimerViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        isCountingDown = false
+//        updateUI()
+        remainingTime = 0
+        timePickerContainerView.isHidden = false
+        startButton.isEnabled = true
+        cancelButton.isEnabled = false
+
+        if let timer = timer {
+            timer.invalidate()
+        }
+        countDownLabel.text = formatTime(from: remainingTime)
+
         removePendingNotifications()
-        updateUI()
-        
     }
     
     
     @IBAction func startButtonTapped(_ sender: Any) {
-        isCountingDown = true
-        startButtonTapped()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
+        remainingTime = timePicker.countDownDuration
+        timePickerContainerView.isHidden = true
+        startButton.isEnabled = false
+        cancelButton.isEnabled = true
+        
+        countDownLabel.text = formatTime(from: remainingTime)
+
+//        updateUI()
         scheduleNotifications(with: remainingTime)
     }
-    
-    
 }
 
 
@@ -98,11 +111,8 @@ extension TimerViewController {
         let minutes = seconds % 3600 / 60
         seconds = seconds % 3600 % 60
         
-        
         var minutesString = "\(minutes)"
         var secondsString = "\(seconds)"
-        
-        
         
         if minutes < 10 {
             minutesString = "0\(minutes)"
@@ -128,53 +138,14 @@ extension TimerViewController {
     private func removePendingNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
-    
-    private func startButtonTapped() {
-        
-        timePickerContainerView.isHidden = true
-        countDownLabel.text = formatTime(from: remainingTime)
 
-        if isPaused {
-            startButtonTitleLabel.text = "Resume"
-            timer.invalidate()
-
-        } else {
-            remainingTime = timePicker.countDownDuration
-            startButtonTitleLabel.text = "Pause"
-            if let timer = timer {
-                timer.invalidate()
-            }
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
-        }
-        
-        isPaused.toggle()
-
-    }
-    
-    private func updateUI() {
-        
-        if isCountingDown {
-            remainingTime = timePicker.countDownDuration
-            timePickerContainerView.isHidden = true
-        } else {
-            remainingTime = 0
-            timePickerContainerView.isHidden = false
-            if let timer = timer {
-                timer.invalidate()
-            }
-        }
-        
-        countDownLabel.text = formatTime(from: remainingTime)
-        isCountingDown.toggle()
-    }
     
     @objc private func startCountdown() {
         if remainingTime > 0 {
             remainingTime -= 1
             countDownLabel.text = formatTime(from: remainingTime)
         } else {
-            isCountingDown = false
-            updateUI()
+            countDownLabel.text = formatTime(from: 0)
             timer.invalidate()
         }
     }
@@ -183,5 +154,7 @@ extension TimerViewController {
         
         startButtonContainer.layer.cornerRadius = startButtonContainer.frame.width / 2
         cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
+        
+        cancelButton.isEnabled = false
     }
 }
