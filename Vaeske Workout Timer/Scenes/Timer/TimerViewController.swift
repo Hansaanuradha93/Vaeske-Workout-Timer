@@ -74,8 +74,10 @@ extension TimerViewController {
     private func addCircularBar() {
         
         let center = countDownContainer.center
+        let startAngle = -CGFloat.pi / 2
+        let endAngle = (2 * CGFloat.pi) - CGFloat.pi / 2
         
-        let circularPath = UIBezierPath(arcCenter: center, radius: countDownContainer.frame.width / 2 - 20, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: center, radius: countDownContainer.frame.width / 2 - 20, startAngle: startAngle, endAngle: endAngle, clockwise: true)
          
         trackLayer.path = circularPath.cgPath
         trackLayer.strokeColor = UIColor.lightGray.cgColor
@@ -111,6 +113,14 @@ extension TimerViewController {
         basicAnimation.isRemovedOnCompletion = false
         
         shapeLayer.add(basicAnimation, forKey: "circularWheel")
+        
+        
+//        animation.fromValue = 0
+//        animation.toValue = 1
+//        animation.duration = 2
+//        animation.autoreverses = true
+//        animation.repeatCount = .infinity
+//        layer.add(animation, forKey: "line")
     }
     
     
