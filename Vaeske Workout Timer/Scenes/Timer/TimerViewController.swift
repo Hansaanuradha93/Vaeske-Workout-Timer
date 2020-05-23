@@ -77,7 +77,7 @@ extension TimerViewController {
         let startAngle = -CGFloat.pi / 2
         let endAngle = (2 * CGFloat.pi) - CGFloat.pi / 2
         
-        let circularPath = UIBezierPath(arcCenter: center, radius: countDownContainer.frame.width / 2 - 20, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: center, radius: countDownContainer.frame.width / 2 - 40, startAngle: startAngle, endAngle: endAngle, clockwise: true)
          
         trackLayer.path = circularPath.cgPath
         trackLayer.strokeColor = UIColor.lightGray.cgColor
