@@ -90,6 +90,41 @@ class TimerViewController: UIViewController {
 // MARK: - Methods
 extension TimerViewController {
     
+    private func formatTime(from time: Double) -> String {
+        
+        var seconds = Int(time)
+        
+        let hours = seconds / 3600
+        let minutes = seconds % 3600 / 60
+        seconds = seconds % 3600 % 60
+        
+        
+        var minutesString = "\(minutes)"
+        var secondsString = "\(seconds)"
+        
+        
+        
+        if minutes < 10 {
+            minutesString = "0\(minutes)"
+        }
+        
+        if seconds < 10 {
+           secondsString = "0\(seconds)"
+        }
+        
+        var timeFormat = "\(hours):\(minutesString):\(secondsString)"
+        
+        if hours == 0 {
+            timeFormat = "\(minutesString):\(secondsString)"
+        } else if hours < 10 {
+            timeFormat = "0\(hours):\(minutesString):\(secondsString)"
+        }
+        
+        print("Hours: \(hours)\tMinues: \(minutes)\tSeconds: \(seconds)")
+        
+        return timeFormat
+    }
+    
     private func removePendingNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
@@ -104,15 +139,17 @@ extension TimerViewController {
             timePickerContainerView.isHidden = false
         }
         
-        countDownLabel.text = "\(remainingTime)"
+        countDownLabel.text = formatTime(from: remainingTime)
         isCountingDown.toggle()
     }
     
     @objc private func startCountdown() {
         if remainingTime > 0 {
             remainingTime -= 1
-            countDownLabel.text = "\(remainingTime)"
+            countDownLabel.text = formatTime(from: remainingTime)
         } else {
+            isCountingDown = false
+            updateUI()
             timer.invalidate()
         }
     }
