@@ -16,6 +16,7 @@ class TimerViewController: UIViewController {
     
     var timer: Timer!
     var remainingTime: Double = 0
+    var isCountingDown: Bool = false
     
     
     // MARK: IBOutlets
@@ -68,15 +69,15 @@ class TimerViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        print("Cancel")
+        isCountingDown = false
+        updateUI()
         timer.invalidate()
     }
     
     
     @IBAction func startButtonTapped(_ sender: Any) {
-        print("Timer Started")
-        remainingTime = timePicker.countDownDuration
-        countDownLabel.text = "\(remainingTime)"
+        isCountingDown = true
+        updateUI()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
         scheduleNotifications(with: remainingTime)
     }
@@ -87,6 +88,20 @@ class TimerViewController: UIViewController {
 
 // MARK: - Methods
 extension TimerViewController {
+    
+    private func updateUI() {
+        
+        if isCountingDown {
+            remainingTime = timePicker.countDownDuration
+            timePickerContainerView.isHidden = true
+        } else {
+            remainingTime = 0
+            timePickerContainerView.isHidden = false
+        }
+        
+        countDownLabel.text = "\(remainingTime)"
+        isCountingDown.toggle()
+    }
     
     @objc private func startCountdown() {
         if remainingTime > 0 {
