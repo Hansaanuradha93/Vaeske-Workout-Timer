@@ -1,4 +1,5 @@
 import UIKit
+import UserNotifications
 
 class TimerViewController: UIViewController {
 
@@ -31,6 +32,29 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        scheduleNotifications()
+    }
+    
+    func scheduleNotifications() {
+
+        let content = UNMutableNotificationContent()
+        let requestIdentifier = "timerNotification"
+
+        content.badge = 1
+        content.title = "Vaeske Timer"
+        content.body = "Lets do another 30 seconds workout"
+        content.sound = UNNotificationSound.default
+
+        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 5.0, repeats: false)
+
+        let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (error:Error?) in
+
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            print("Notification Register Success")
+        }
     }
     
     
@@ -56,6 +80,8 @@ class TimerViewController: UIViewController {
         countDownLabel.text = "\(remainingTime)"
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
     }
+    
+    
 }
 
 
