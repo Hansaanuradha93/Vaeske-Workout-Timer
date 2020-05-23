@@ -45,14 +45,13 @@ class TimerViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         cancelButtonTapped()
         removePendingNotifications()
-        removeCircularBar()
+        removeCircularBarAnimation()
     }
     
     
     @IBAction func startButtonTapped(_ sender: Any) {
         startButtonTapped()
         scheduleNotifications(with: remainingTime)
-        addCircularBar()
     }
 }
 
@@ -94,21 +93,19 @@ extension TimerViewController {
 
         countDownContainer.layer.addSublayer(shapeLayer)
 
-        countDownContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     
     
-    private func removeCircularBar() {
+    private func removeCircularBarAnimation() {
         shapeLayer.removeAllAnimations()
-        trackLayer.removeFromSuperlayer()
     }
     
     
-    @objc func handleTap() {
+    private func addCircularBarAnimation(with duration: CFTimeInterval) {
         
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.toValue = 0
-        basicAnimation.duration = 10
+        basicAnimation.duration = duration
         
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
@@ -144,11 +141,13 @@ extension TimerViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
         remainingTime = timePicker.countDownDuration
+        addCircularBarAnimation(with: remainingTime)
+        countDownLabel.text = formatTime(from: remainingTime)
+        
         timePickerContainerView.isHidden = true
         countDownContainer.isHidden = false
         startButton.isEnabled = false
         cancelButton.isEnabled = true
-        countDownLabel.text = formatTime(from: remainingTime)
     }
     
     
@@ -210,5 +209,6 @@ extension TimerViewController {
         cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
         cancelButton.isEnabled = false
         countDownContainer.isHidden = true
+        addCircularBar()
     }
 }
