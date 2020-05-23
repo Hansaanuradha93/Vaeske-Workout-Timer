@@ -17,11 +17,14 @@ class TimerViewController: UIViewController {
     
     var timer: Timer!
     var remainingTime: Double = 0
-    
+    let shapeLayer = CAShapeLayer()
+    let trackLayer = CAShapeLayer()
+
     
     // MARK: IBOutlets
     @IBOutlet weak var timePickerContainerView: UIView!
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var countDownContainer: UIView!
     @IBOutlet weak var cancelButtonContainer: UIView!
     @IBOutlet weak var cancelButtonTitleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
@@ -42,13 +45,14 @@ class TimerViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         cancelButtonTapped()
         removePendingNotifications()
+        removeCircularBar()
     }
     
     
     @IBAction func startButtonTapped(_ sender: Any) {
         startButtonTapped()
-
         scheduleNotifications(with: remainingTime)
+        addCircularBar()
     }
 }
 
@@ -65,6 +69,51 @@ extension TimerViewController {
             countDownLabel.text = formatTime(from: 0)
             timer.invalidate()
         }
+    }
+    
+    
+    private func addCircularBar() {
+        
+        let center = countDownContainer.center
+        
+        let circularPath = UIBezierPath(arcCenter: center, radius: countDownContainer.frame.width / 2 - 20, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+         
+        trackLayer.path = circularPath.cgPath
+        trackLayer.strokeColor = UIColor.lightGray.cgColor
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.lineWidth = 10
+        countDownContainer.layer.addSublayer(trackLayer)
+        
+    
+        shapeLayer.path = circularPath.cgPath
+        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        shapeLayer.lineWidth = 10
+        shapeLayer.strokeEnd = 1
+
+        countDownContainer.layer.addSublayer(shapeLayer)
+
+        countDownContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    }
+    
+    
+    private func removeCircularBar() {
+        shapeLayer.removeAllAnimations()
+        trackLayer.removeFromSuperlayer()
+    }
+    
+    
+    @objc func handleTap() {
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 0
+        basicAnimation.duration = 10
+        
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "circularWheel")
     }
     
     
@@ -96,6 +145,7 @@ extension TimerViewController {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
         remainingTime = timePicker.countDownDuration
         timePickerContainerView.isHidden = true
+        countDownContainer.isHidden = false
         startButton.isEnabled = false
         cancelButton.isEnabled = true
         countDownLabel.text = formatTime(from: remainingTime)
@@ -106,6 +156,7 @@ extension TimerViewController {
         
         remainingTime = 0
         timePickerContainerView.isHidden = false
+        countDownContainer.isHidden = true
         startButton.isEnabled = true
         cancelButton.isEnabled = false
         if let timer = timer {
@@ -158,5 +209,6 @@ extension TimerViewController {
         startButtonContainer.layer.cornerRadius = startButtonContainer.frame.width / 2
         cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
         cancelButton.isEnabled = false
+        countDownContainer.isHidden = true
     }
 }
