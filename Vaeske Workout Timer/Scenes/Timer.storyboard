@@ -19,16 +19,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ul-wg-d7k">
-                                        <rect key="frame" x="0.0" y="116" width="414" height="216"/>
+                                        <rect key="frame" x="0.0" y="112" width="414" height="224"/>
                                     </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="3Ul-wg-d7k" secondAttribute="trailing" id="1G3-dK-QBw"/>
                                     <constraint firstItem="3Ul-wg-d7k" firstAttribute="centerY" secondItem="Tf3-ZR-UKc" secondAttribute="centerY" id="pKT-Xa-0ZR"/>
-                                    <constraint firstItem="3Ul-wg-d7k" firstAttribute="height" secondItem="Tf3-ZR-UKc" secondAttribute="height" multiplier="0.482143" id="tQb-B4-XKa"/>
+                                    <constraint firstItem="3Ul-wg-d7k" firstAttribute="height" secondItem="Tf3-ZR-UKc" secondAttribute="height" multiplier="0.5" id="tQb-B4-XKa"/>
                                     <constraint firstItem="3Ul-wg-d7k" firstAttribute="leading" secondItem="Tf3-ZR-UKc" secondAttribute="leading" id="zIZ-qc-bxR"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1WK-0q-Qdr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzu-Ed-wsl">
                                 <rect key="frame" x="20" y="468" width="70" height="70"/>
@@ -99,12 +103,16 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="1WK-0q-Qdr" secondAttribute="trailing" id="6h1-bt-AkJ"/>
                             <constraint firstItem="Tf3-ZR-UKc" firstAttribute="height" secondItem="U1H-mU-bKn" secondAttribute="height" multiplier="0.5" id="H5V-8c-fm3"/>
                             <constraint firstItem="cDc-ki-x7V" firstAttribute="top" secondItem="Tf3-ZR-UKc" secondAttribute="bottom" constant="20" id="HU5-EL-CM3"/>
                             <constraint firstItem="pzu-Ed-wsl" firstAttribute="leading" secondItem="0fe-PX-SVY" secondAttribute="leading" constant="20" id="IGB-ni-5gk"/>
+                            <constraint firstItem="1WK-0q-Qdr" firstAttribute="top" secondItem="U1H-mU-bKn" secondAttribute="top" id="May-K4-5Gb"/>
                             <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="cDc-ki-x7V" secondAttribute="trailing" constant="20" id="Nm6-cd-jlL"/>
                             <constraint firstItem="Tf3-ZR-UKc" firstAttribute="top" secondItem="U1H-mU-bKn" secondAttribute="top" id="TWM-Ly-jbv"/>
                             <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="Tf3-ZR-UKc" secondAttribute="trailing" id="Wqs-TI-HEX"/>
+                            <constraint firstItem="1WK-0q-Qdr" firstAttribute="leading" secondItem="0fe-PX-SVY" secondAttribute="leading" id="cIn-PC-pwt"/>
+                            <constraint firstItem="1WK-0q-Qdr" firstAttribute="height" secondItem="U1H-mU-bKn" secondAttribute="height" multiplier="0.5" id="oMz-ky-r8J"/>
                             <constraint firstItem="ISV-g9-EAM" firstAttribute="top" secondItem="cDc-ki-x7V" secondAttribute="bottom" constant="100" id="sM2-Cl-KZN"/>
                             <constraint firstItem="ISV-g9-EAM" firstAttribute="centerX" secondItem="0fe-PX-SVY" secondAttribute="centerX" id="wgl-lZ-iPg"/>
                             <constraint firstItem="pzu-Ed-wsl" firstAttribute="top" secondItem="Tf3-ZR-UKc" secondAttribute="bottom" constant="20" id="z68-Dt-tgd"/>
@@ -117,6 +125,7 @@
                         <outlet property="cancelButton" destination="fGs-hP-VD8" id="72t-rV-494"/>
                         <outlet property="cancelButtonContainer" destination="pzu-Ed-wsl" id="uUC-DA-xZZ"/>
                         <outlet property="cancelButtonTitleLabel" destination="UTt-cn-JRb" id="api-Ep-yGt"/>
+                        <outlet property="countDownContainer" destination="1WK-0q-Qdr" id="GbO-0P-BjP"/>
                         <outlet property="countDownLabel" destination="ISV-g9-EAM" id="O1b-9W-f0j"/>
                         <outlet property="startButton" destination="Ub9-Fp-c3i" id="n9O-KK-idf"/>
                         <outlet property="startButtonContainer" destination="cDc-ki-x7V" id="uIt-gk-gCW"/>
