@@ -73,7 +73,7 @@ class TimerViewController: UIViewController {
         isCountingDown = false
         removePendingNotifications()
         updateUI()
-        timer.invalidate()
+        
     }
     
     
@@ -159,14 +159,9 @@ extension TimerViewController {
         } else {
             remainingTime = 0
             timePickerContainerView.isHidden = false
-        }
-        
-        if isPaused {
-            startButtonTitleLabel.text = "Start"
-            isPaused = false
-        } else {
-            startButtonTitleLabel.text = "Pause"
-            isPaused = true
+            if let timer = timer {
+                timer.invalidate()
+            }
         }
         
         countDownLabel.text = formatTime(from: remainingTime)
