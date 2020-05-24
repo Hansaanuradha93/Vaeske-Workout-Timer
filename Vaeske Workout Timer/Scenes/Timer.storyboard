@@ -22,7 +22,7 @@
                                         <rect key="frame" x="0.0" y="112" width="414" height="224"/>
                                     </datePicker>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="3Ul-wg-d7k" secondAttribute="trailing" id="1G3-dK-QBw"/>
                                     <constraint firstItem="3Ul-wg-d7k" firstAttribute="centerY" secondItem="Tf3-ZR-UKc" secondAttribute="centerY" id="pKT-Xa-0ZR"/>
@@ -46,7 +46,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="BOB-O6-DbP" firstAttribute="top" secondItem="ISV-g9-EAM" secondAttribute="bottom" constant="-5" id="Kmr-zu-YfS"/>
                                     <constraint firstItem="ISV-g9-EAM" firstAttribute="centerY" secondItem="1WK-0q-Qdr" secondAttribute="centerY" id="U2D-d9-a0L"/>
@@ -113,7 +113,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pzu-Ed-wsl" firstAttribute="width" secondItem="U1H-mU-bKn" secondAttribute="width" multiplier="0.205314" id="4ja-gq-wPV"/>
                             <constraint firstItem="0fe-PX-SVY" firstAttribute="trailing" secondItem="1WK-0q-Qdr" secondAttribute="trailing" id="6h1-bt-AkJ"/>

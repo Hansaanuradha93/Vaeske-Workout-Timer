@@ -266,6 +266,8 @@ extension TimerViewController {
         startButtonContainer.layer.cornerRadius = startButtonContainer.frame.width / 2
         cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
         
+        timePicker.setValue(UIColor.white, forKeyPath: "textColor")
+
         cancelButton.isEnabled = false
         cancelButtonContainer.alpha = transparency
         startButtonContainer.alpha = 1
