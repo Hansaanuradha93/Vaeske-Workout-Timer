@@ -35,6 +35,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var startButtonTitleLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var countDownLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     
     // MARK: View Controller
@@ -72,12 +73,16 @@ extension TimerViewController {
             if isFirstRound {
                 addCircularBar(with: .systemRed)
                 countDownLabel.textColor = .systemRed
+                statusLabel.text = "Working Out"
+                statusLabel.textColor = .systemRed
                 startCountDown(with: roundTime)
                 isSecondRound = true
                 isFirstRound.toggle()
             } else if isSecondRound {
                 addCircularBar(with: .systemGreen)
                 countDownLabel.textColor = .systemGreen
+                statusLabel.text = "Resting"
+                statusLabel.textColor = .systemGreen
                 startCountDown(with: roundTime)
                 isSecondRound.toggle()
             } else {
@@ -194,6 +199,10 @@ extension TimerViewController {
             timer.invalidate()
         }
         countDownLabel.text = formatTime(from: remainingTime)
+        addCircularBar(with: .systemIndigo)
+        countDownLabel.textColor = .systemIndigo
+        statusLabel.text = "Working Out"
+        statusLabel.textColor = .systemIndigo
     }
     
     
@@ -243,5 +252,7 @@ extension TimerViewController {
         countDownContainer.isHidden = true
         addCircularBar(with: .systemIndigo)
         countDownLabel.textColor = .systemIndigo
+        statusLabel.text = "Working Out"
+        statusLabel.textColor = .systemIndigo
     }
 }

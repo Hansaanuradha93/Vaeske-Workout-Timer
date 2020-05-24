@@ -39,10 +39,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Working Out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOB-O6-DbP">
+                                        <rect key="frame" x="147.5" y="260" width="119" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="BOB-O6-DbP" firstAttribute="top" secondItem="ISV-g9-EAM" secondAttribute="bottom" constant="-5" id="Kmr-zu-YfS"/>
                                     <constraint firstItem="ISV-g9-EAM" firstAttribute="centerY" secondItem="1WK-0q-Qdr" secondAttribute="centerY" id="U2D-d9-a0L"/>
+                                    <constraint firstItem="BOB-O6-DbP" firstAttribute="centerX" secondItem="ISV-g9-EAM" secondAttribute="centerX" id="Vu8-fk-er8"/>
                                     <constraint firstItem="ISV-g9-EAM" firstAttribute="centerX" secondItem="1WK-0q-Qdr" secondAttribute="centerX" id="mbR-Pb-prs"/>
                                 </constraints>
                             </view>
@@ -134,6 +142,7 @@
                         <outlet property="startButton" destination="Ub9-Fp-c3i" id="n9O-KK-idf"/>
                         <outlet property="startButtonContainer" destination="cDc-ki-x7V" id="uIt-gk-gCW"/>
                         <outlet property="startButtonTitleLabel" destination="8XM-7C-nRc" id="Xbs-Ab-wnP"/>
+                        <outlet property="statusLabel" destination="BOB-O6-DbP" id="0x2-R7-Z6x"/>
                         <outlet property="timePicker" destination="3Ul-wg-d7k" id="FVH-Ir-wbg"/>
                         <outlet property="timePickerContainerView" destination="Tf3-ZR-UKc" id="POx-S8-BET"/>
                     </connections>
