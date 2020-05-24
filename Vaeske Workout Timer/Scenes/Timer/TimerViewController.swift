@@ -20,6 +20,7 @@ class TimerViewController: UIViewController {
     var isFirstRound: Bool = false
     var isSecondRound: Bool = false
     let roundTime: Double = 30
+    let transparency: CGFloat = 0.5
     let shapeLayer = CAShapeLayer()
     let trackLayer = CAShapeLayer()
 
@@ -47,7 +48,7 @@ class TimerViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        cancelButtonTapped()
+        reset()
         removePendingNotifications()
         removeCircularBarAnimation()
     }
@@ -86,8 +87,7 @@ extension TimerViewController {
                 startCountDown(with: roundTime)
                 isSecondRound.toggle()
             } else {
-                countDownLabel.text = formatTime(from: 0)
-                timer.invalidate()
+                reset()
             }
             
         }
@@ -179,14 +179,17 @@ extension TimerViewController {
         
         timePickerContainerView.isHidden = true
         countDownContainer.isHidden = false
+        startButtonContainer.alpha = transparency
+        cancelButtonContainer.alpha = 1
+
         startButton.isEnabled = false
         cancelButton.isEnabled = true
-        
+
         isFirstRound = true
     }
     
     
-    private func cancelButtonTapped() {
+    private func reset() {
         
         remainingTime = 0
         timePickerContainerView.isHidden = false
@@ -203,6 +206,8 @@ extension TimerViewController {
         countDownLabel.textColor = .systemIndigo
         statusLabel.text = "Working Out"
         statusLabel.textColor = .systemIndigo
+        cancelButtonContainer.alpha = transparency
+        startButtonContainer.alpha = 1
     }
     
     
@@ -248,8 +253,12 @@ extension TimerViewController {
         
         startButtonContainer.layer.cornerRadius = startButtonContainer.frame.width / 2
         cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
+        
         cancelButton.isEnabled = false
+        cancelButtonContainer.alpha = transparency
+        startButtonContainer.alpha = 1
         countDownContainer.isHidden = true
+
         addCircularBar(with: .systemIndigo)
         countDownLabel.textColor = .systemIndigo
         statusLabel.text = "Working Out"
