@@ -19,7 +19,7 @@ class TimerViewController: UIViewController {
     var remainingTime: Double = 0
     var isFirstRound: Bool = false
     var isSecondRound: Bool = false
-    let rountTime: Double = 30
+    let roundTime: Double = 30
     let shapeLayer = CAShapeLayer()
     let trackLayer = CAShapeLayer()
 
@@ -62,7 +62,7 @@ class TimerViewController: UIViewController {
 // MARK: - Methods
 extension TimerViewController {
     
-    @objc private func startCountdown() {
+    @objc private func handleTimer() {
         
         if remainingTime > 0 {
             remainingTime -= 1
@@ -70,15 +70,15 @@ extension TimerViewController {
         } else {
             
             if isFirstRound {
-                remainingTime = rountTime
-                countDownLabel.text = formatTime(from: remainingTime)
-                addCircularBarAnimation(with: remainingTime)
+                addCircularBar(with: .systemRed)
+                countDownLabel.textColor = .systemRed
+                startCountDown(with: roundTime)
                 isSecondRound = true
                 isFirstRound.toggle()
             } else if isSecondRound {
-                remainingTime = rountTime
-                countDownLabel.text = formatTime(from: remainingTime)
-                addCircularBarAnimation(with: remainingTime)
+                addCircularBar(with: .systemGreen)
+                countDownLabel.textColor = .systemGreen
+                startCountDown(with: roundTime)
                 isSecondRound.toggle()
             } else {
                 countDownLabel.text = formatTime(from: 0)
@@ -89,7 +89,15 @@ extension TimerViewController {
     }
     
     
-    private func addCircularBar() {
+    private func startCountDown(with time: Double) {
+        
+        remainingTime = time
+        countDownLabel.text = formatTime(from: remainingTime)
+        addCircularBarAnimation(with: remainingTime)
+    }
+    
+    
+    private func addCircularBar(with color: UIColor) {
         
         let center = countDownContainer.center
         let startAngle = -CGFloat.pi / 2
@@ -105,7 +113,7 @@ extension TimerViewController {
         
     
         shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.strokeColor = color.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = CAShapeLayerLineCap.round
         shapeLayer.lineWidth = 10
@@ -159,7 +167,7 @@ extension TimerViewController {
     
     private func startButtonTapped() {
         
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startCountdown), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(handleTimer), userInfo: nil, repeats: true)
         remainingTime = timePicker.countDownDuration
         addCircularBarAnimation(with: remainingTime)
         countDownLabel.text = formatTime(from: remainingTime)
@@ -233,6 +241,7 @@ extension TimerViewController {
         cancelButtonContainer.layer.cornerRadius = cancelButtonContainer.frame.width / 2
         cancelButton.isEnabled = false
         countDownContainer.isHidden = true
-        addCircularBar()
+        addCircularBar(with: .systemIndigo)
+        countDownLabel.textColor = .systemIndigo
     }
 }
