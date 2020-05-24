@@ -49,8 +49,6 @@ class TimerViewController: UIViewController {
     // MARK: IBActions
     @IBAction func cancelButtonTapped(_ sender: Any) {
         reset()
-        removePendingNotifications()
-        removeCircularBarAnimation()
     }
     
     
@@ -75,7 +73,7 @@ extension TimerViewController {
                 
                 addCircularBar(with: .systemPink)
                 countDownLabel.textColor = .systemPink
-                statusLabel.text = "Working Out"
+                statusLabel.text = "WORK OUT"
                 statusLabel.textColor = .systemPink
                 
                 startCountDown(with: roundTime)
@@ -90,7 +88,7 @@ extension TimerViewController {
                 
                 addCircularBar(with: .systemGreen)
                 countDownLabel.textColor = .systemGreen
-                statusLabel.text = "Resting"
+                statusLabel.text = "REST"
                 statusLabel.textColor = .systemGreen
                 
                 startCountDown(with: roundTime)
@@ -208,18 +206,24 @@ extension TimerViewController {
         countDownContainer.isHidden = true
         startButton.isEnabled = true
         cancelButton.isEnabled = false
+        
         isFirstRound = false
         isSecondRound = false
+        
         if let timer = timer {
             timer.invalidate()
         }
         countDownLabel.text = formatTime(from: remainingTime)
+        
         addCircularBar(with: .systemIndigo)
         countDownLabel.textColor = .systemIndigo
-        statusLabel.text = "Working Out"
+        statusLabel.text = "WORK OUT"
         statusLabel.textColor = .systemIndigo
         cancelButtonContainer.alpha = transparency
         startButtonContainer.alpha = 1
+        
+        removePendingNotifications()
+        removeCircularBarAnimation()
     }
     
     
@@ -275,7 +279,7 @@ extension TimerViewController {
 
         addCircularBar(with: .systemIndigo)
         countDownLabel.textColor = .systemIndigo
-        statusLabel.text = "Working Out"
+        statusLabel.text = "WORK OUT"
         statusLabel.textColor = .systemIndigo
     }
 }
