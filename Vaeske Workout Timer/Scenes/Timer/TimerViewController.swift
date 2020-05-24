@@ -56,7 +56,7 @@ class TimerViewController: UIViewController {
     
     @IBAction func startButtonTapped(_ sender: Any) {
         startButtonTapped()
-        scheduleNotifications(with: remainingTime)
+        scheduleNotifications(with: remainingTime, text: "Lets do another 30 seconds workout")
     }
 }
 
@@ -72,19 +72,31 @@ extension TimerViewController {
         } else {
             
             if isFirstRound {
-                addCircularBar(with: .systemRed)
-                countDownLabel.textColor = .systemRed
+                
+                addCircularBar(with: .systemPink)
+                countDownLabel.textColor = .systemPink
                 statusLabel.text = "Working Out"
-                statusLabel.textColor = .systemRed
+                statusLabel.textColor = .systemPink
+                
                 startCountDown(with: roundTime)
+                removePendingNotifications()
+                scheduleNotifications(with: roundTime, text: "Take a 30 seconds Rest")
+
                 isSecondRound = true
                 isFirstRound.toggle()
+                
+                
             } else if isSecondRound {
+                
                 addCircularBar(with: .systemGreen)
                 countDownLabel.textColor = .systemGreen
                 statusLabel.text = "Resting"
                 statusLabel.textColor = .systemGreen
+                
                 startCountDown(with: roundTime)
+                removePendingNotifications()
+                scheduleNotifications(with: roundTime, text: "You have completed the workout successfully!")
+                
                 isSecondRound.toggle()
             } else {
                 reset()
@@ -147,14 +159,14 @@ extension TimerViewController {
     }
     
     
-    private func scheduleNotifications(with timeInterval: TimeInterval) {
+    private func scheduleNotifications(with timeInterval: TimeInterval, text: String) {
 
         let content = UNMutableNotificationContent()
         let requestIdentifier = "timerNotification"
 
         content.badge = 1
         content.title = "Vaeske Timer"
-        content.body = "Lets do another 30 seconds workout"
+        content.body = text
         content.sound = UNNotificationSound.default
 
         let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: timeInterval, repeats: false)
