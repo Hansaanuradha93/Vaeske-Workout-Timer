@@ -17,6 +17,9 @@ class TimerViewController: UIViewController {
     
     var timer: Timer!
     var remainingTime: Double = 0
+    var isFirstRound: Bool = false
+    var isSecondRound: Bool = false
+    let rountTime: Double = 30
     let shapeLayer = CAShapeLayer()
     let trackLayer = CAShapeLayer()
 
@@ -65,8 +68,23 @@ extension TimerViewController {
             remainingTime -= 1
             countDownLabel.text = formatTime(from: remainingTime)
         } else {
-            countDownLabel.text = formatTime(from: 0)
-            timer.invalidate()
+            
+            if isFirstRound {
+                remainingTime = rountTime
+                countDownLabel.text = formatTime(from: remainingTime)
+                addCircularBarAnimation(with: remainingTime)
+                isSecondRound = true
+                isFirstRound.toggle()
+            } else if isSecondRound {
+                remainingTime = rountTime
+                countDownLabel.text = formatTime(from: remainingTime)
+                addCircularBarAnimation(with: remainingTime)
+                isSecondRound.toggle()
+            } else {
+                countDownLabel.text = formatTime(from: 0)
+                timer.invalidate()
+            }
+            
         }
     }
     
@@ -113,14 +131,6 @@ extension TimerViewController {
         basicAnimation.isRemovedOnCompletion = false
         
         shapeLayer.add(basicAnimation, forKey: "circularWheel")
-        
-        
-//        animation.fromValue = 0
-//        animation.toValue = 1
-//        animation.duration = 2
-//        animation.autoreverses = true
-//        animation.repeatCount = .infinity
-//        layer.add(animation, forKey: "line")
     }
     
     
@@ -158,6 +168,8 @@ extension TimerViewController {
         countDownContainer.isHidden = false
         startButton.isEnabled = false
         cancelButton.isEnabled = true
+        
+        isFirstRound = true
     }
     
     
@@ -168,6 +180,8 @@ extension TimerViewController {
         countDownContainer.isHidden = true
         startButton.isEnabled = true
         cancelButton.isEnabled = false
+        isFirstRound = false
+        isSecondRound = false
         if let timer = timer {
             timer.invalidate()
         }
